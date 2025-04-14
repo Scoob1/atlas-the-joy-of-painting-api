@@ -5,8 +5,8 @@ import ast
 # ---------- DB CONNECTION ----------
 conn = pymysql.connect(
     host='localhost',
-    user='your_user',
-    password='your_pass',
+    user='root',
+    password='0Akley11',
     database='joy_of_painting'
 )
 cursor = conn.cursor()
@@ -46,6 +46,7 @@ def insert_subject(subject):
 # ---------- ETL: EPISODES ----------
 episodes_df = pd.read_csv('data/episodes.csv', header=None, names=['raw'])
 for i, row in episodes_df.iterrows():
+    i = int(i)
     raw = row['raw']
     if '(' not in raw: continue
     title, date = raw.rsplit('(', 1)
