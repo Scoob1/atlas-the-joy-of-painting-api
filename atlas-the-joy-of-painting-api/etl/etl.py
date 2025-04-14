@@ -44,17 +44,23 @@ def insert_subject(subject):
     return cursor.fetchone()[0]
 
 # ---------- ETL: EPISODES ----------
-episodes_df = pd.read_csv('data/episodes.csv', header=None, names=['raw'])
 for i, row in episodes_df.iterrows():
-    i = int(i)
     raw = row['raw']
-    if '(' not in raw: continue
+    if '(' not in raw:
+        continue
+
     title, date = raw.rsplit('(', 1)
     title = title.strip().title()
-    broadcast_date = pd.to_datetime(date.strip(')'), errors='coerce').date()
+    broadcast_date = pd.to_datetime(date.strip(')'), errors='coerce')
+
+    if pd.isna(broadcast_date):
+        continue
+
+    broadcast_date = broadcast_date.date()
 
     season_number = (i // 13) + 1
     episode_number = (i % 13) + 1
+
     insert_episode(season_number, episode_number, title, broadcast_date)
 
 # ---------- ETL: COLORS ----------
