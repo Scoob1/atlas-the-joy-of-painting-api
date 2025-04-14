@@ -44,6 +44,14 @@ def insert_subject(subject):
     return cursor.fetchone()[0]
 
 # ---------- ETL: EPISODES ----------
+episodes_df = pd.read_csv(
+    'data/episodes.csv',
+    header=None,
+    names=['raw'],
+    on_bad_lines='skip',
+    index_col=False
+)
+
 for i, row in episodes_df.iterrows():
     raw = row['raw']
     if '(' not in raw:
