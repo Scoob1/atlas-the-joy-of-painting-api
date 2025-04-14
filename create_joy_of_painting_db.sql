@@ -12,6 +12,7 @@ CREATE TABLE episodes (
     episode_number INT NOT NULL,
     title VARCHAR(255),
     painting_name VARCHAR(255),
+    broadcast_date DATE,
     FOREIGN KEY (season_id) REFERENCES seasons(id)
 );
 
