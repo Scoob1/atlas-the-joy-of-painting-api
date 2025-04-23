@@ -102,12 +102,6 @@ Body: {
 
 ---
 
-## 📸 UML Diagram
-
-Check out the `uml/db_design.png` file for the visual structure of the database, showing relationships between episodes, colors, and subjects.
-
----
-
 ## 🧑‍🎨 Author
 
 Tamara Walling
